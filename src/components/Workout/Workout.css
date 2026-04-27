@@ -1,0 +1,8 @@
+@keyframes runSlide {
+  0%, 60%, 100% { transform: translateX(0px); }
+  80%           { transform: translateX(28px); }
+}
+
+.run-alive {
+  animation: runSlide 3s ease-in-out infinite;
+}
