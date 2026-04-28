@@ -11,7 +11,6 @@ React frontend for Climotion — a weather-aware workout planner. Search by city
 - React
 - Tailwind CSS
 - Headless UI
-- Heroicons & React Icons
 
 ---
 
