@@ -59,7 +59,7 @@ export default function HomePage() {
       />
       <div className="home-content">
         <div className="hero-section">
-          <Navbar />
+          <Navbar className="pt-5"/>
           <div className="flex-1 flex items-center justify-center">
             <Header getWeather={setWeatherData} />
           </div>

@@ -3,11 +3,13 @@ import React, { useState } from 'react';
 import './Navbar.css';
 import { Dialog, DialogPanel } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { BoltIcon } from '@heroicons/react/24/solid';
 
 const navigation = [
   { name: 'Home', href: '/' },
-  { name: 'Workouts', href: '/workouts' },
-  { name: 'Contact', href: '#' }
+  { name: 'Get Workouts', href: '/workouts' },
+  { name: 'Contact Us ', href: '#' },
+  { name: 'Sign In', href: '/login'}
 ]
 
 
@@ -16,16 +18,13 @@ export default function Navbar() {
 
   return (
     <div className="bg-gray-900">
-      <header className="absolute inset-x-0 top-0 z-50">
-        <nav aria-label="Global" className="flex items-center justify-between p-3 lg:px-8">
+      <header className="absolute inset-x-0 top-0 z-50 pt-5 px-8 md:mx-10">
+        <nav aria-label="Global" className="flex items-center justify-between">
           <div className="flex lg:flex-1">
-            <a href="#" className="-m-1.5 p-1.5">
+            <a href="/" className="-m-1.5 p-1.5 flex hover:opacity-75">
               <span className="sr-only">Climotion</span>
-              <img
-                alt=""
-                src=""
-                className="h-8 w-auto"
-              />
+              <p className="text-lg font-bold">Climotion</p>
+              <BoltIcon className="nav-bolt h-6 w-6 ml-2 self-center" />
             </a>
           </div>
           <div className="flex lg:hidden">
@@ -46,11 +45,8 @@ export default function Navbar() {
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-4">
-            <a href="/login" className="nav-links-login text-sm/6 font-semibold px-3.5 py-2.5">
-              Log in 
-            </a>
-            <a href="/register" className="nav-links-register text-sm/6 font-semibold border border-white rounded-full px-3.5 py-2.5 shadow-xs">
-              Register 
+            <a href="/register" className="nav-links-register text-sm/6 font-semibold border rounded-full px-5 py-2.5 shadow-xs text-black">
+              Register <span className="px-3" aria-hidden="true">&rarr;</span>
             </a>
           </div>
         </nav>

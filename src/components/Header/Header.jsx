@@ -45,20 +45,20 @@ export default function Header({ getWeather }) {
         >
           <div className="header-blob relative left-[calc(50%-11rem)] aspect-1155/678 w-144.5 -translate-x-1/2 rotate-30 bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-288.75" />
         </div>
-        <div className="mx-auto max-w-3xl py-8">
-          <div className="text-center">
-            <div className="flex items-center justify-center gap-4">
-              <div className="bolt-wrapper">
-                <BoltIcon className="bolt-shake w-12 h-12 sm:w-20 sm:h-20 text-white" />
-              </div>
-              <h1 className="text-5xl font-semibold tracking-tight text-balance text-white sm:text-8xl">
-                Climotion
+        <div className="mx-auto max-w-2xl py-8">
+          <div className="text-start">
+            <div className="flex items-center gap-0">
+              <h1 className="text-5xl font-bold tracking-tight text-balance text-white sm:text-7xl">
+                Your weather. Your workout.
               </h1>
+              <div className="bolt-wrapper">
+                <BoltIcon className="bolt-shake w-16 h-16 sm:w-24 sm:h-24 text-white" />
+              </div>
             </div>
             <p className="mt-6 text-lg font-medium text-pretty text-gray-400 sm:text-2xl">
-              Your weather. Your workout.
+              Search your city, check the skies, and find out if today calls for fresh air or four walls.
             </p>
-            <div className="mt-16 flex items-center justify-center gap-x-4">
+            <div className="mt-16 flex items-center justify-start gap-x-4">
               <label htmlFor="city" className="sr-only">
                 City Name
               </label>
@@ -76,7 +76,7 @@ export default function Header({ getWeather }) {
                 onClick={() => getWeatherData()}
                 className="button-primary flex-none rounded-3xl px-6 py-3.5 text-base font-semibold text-white shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2"
               >
-                Get Weather
+                Get Weather <span className="px-3" aria-hidden="true">&rarr;</span>
               </button>
             </div>
           </div>

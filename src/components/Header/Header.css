@@ -22,6 +22,7 @@
 
 .bolt-shake {
   animation: zapShakeLoop 5s ease-in-out 2.5s infinite;
+  color: #E6F082;
 }
 
 .input-field:focus {

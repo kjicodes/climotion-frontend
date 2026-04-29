@@ -4,6 +4,8 @@ React frontend for Climotion — a weather-aware workout planner. Search by city
 
 **Backend repo:** [climotion](https://github.com/kjicodes/climotion)
 
+![Climotion home page](src/climotion-screenshot.png)
+
 ---
 
 ## Tech Stack
