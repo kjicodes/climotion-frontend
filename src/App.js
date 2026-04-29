@@ -3,8 +3,6 @@ import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom';
 
 import './App.css';
 import HomePage from './pages/HomePage/HomePage';
-import WorkoutsPage from './pages/WorkoutsPage/WorkoutsPage';
-import AuthPage from './pages/AuthPage/AuthPage';
 
 
 function App() {
@@ -13,7 +11,7 @@ function App() {
         <BrowserRouter>
             <Routes>
                <Route path="/" element={<HomePage />} />
-               <Route path="/workouts" element={<WorkoutsPage />} />
+               {/* <Route path="/workouts" element={<WorkoutsPage />} /> */}
                <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
         </BrowserRouter>

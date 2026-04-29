@@ -1,4 +1,39 @@
-.nav-links,
-.nav-items {
+@media (min-width: 1024px) {
+    .nav-links::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: #E6F082;
+        transform: scaleX(0);
+        transform-origin: center;
+        transition: transform 0.3s ease;
+    }
+
+    .nav-links:hover::after {
+        transform: scaleX(1);
+    }
+}
+
+.nav-links {
+    position: relative;
+}
+
+.nav-items,
+.nav-bolt,
+.nav-links:hover {
     color: #E6F082;
 }
+
+.nav-links-register {
+    background-color: #E6F082;
+    border-color: #E6F082;
+}
+
+.nav-links-register:hover {
+    opacity: 0.75;
+}
+
+
