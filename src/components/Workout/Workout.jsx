@@ -6,7 +6,7 @@ export default function Workout ({ recommendation }) {
     const isOutdoor = recommendation?.toLowerCase().includes('outdoor');
 
     return(
-        <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-10 w-full h-full text-left flex flex-col justify-evenly">
+        <div className="workout-card bg-white/5 backdrop-blur-md rounded-2xl p-10 w-full h-full text-left flex flex-col justify-evenly">
             <FaRunning className="run-alive text-4xl text-white/70" />
             <h1 className="text-3xl font-semibold text-white">Ready to move?</h1>
             <div className="flex items-center justify-between gap-4">

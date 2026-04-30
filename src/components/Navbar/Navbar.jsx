@@ -45,7 +45,7 @@ export default function Navbar() {
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-4">
-            <a href="/register" className="nav-links-register text-sm/6 font-semibold border rounded-full px-5 py-2.5 shadow-xs text-black">
+            <a href="/register" className="nav-links-register text-xs font-semibold border rounded-full px-4 py-2 shadow-xs text-black">
               Register <span className="px-3" aria-hidden="true">&rarr;</span>
             </a>
           </div>
