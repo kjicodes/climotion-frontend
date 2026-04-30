@@ -2,15 +2,18 @@
 import { useState } from 'react';
 import "./WeatherCard.css";
 
-export default function WeatherCard({ weather, weatherIcon }) {
-  const today = new Date().toLocaleDateString('en-US', {
+const today = new Date().toLocaleDateString('en-US', {
     weekday: 'long',
     month: 'long',
     day: 'numeric',
   });
 
+export default function WeatherCard({ weather, weatherIcon, gradient }) {
+  
+
+  
   return (
-    <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 h-full overflow-hidden">
+    <div className="weather-card-bg backdrop-blur-md border border-white/10 rounded-2xl p-6 h-full overflow-hidden" style={{ "--card-gradient": gradient }}>
       {weather && (
         <div className="text-left h-full flex flex-col justify-evenly">
           <div className="flex justify-between items-start">

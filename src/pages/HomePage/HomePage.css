@@ -31,22 +31,12 @@
 }
 
 .home-page {
-  position: relative;
   min-height: 100vh;
-}
-
-.home-bg-layer {
-  position: absolute;
-  inset: 0;
-  background: var(--weather-gradient);
-  background-size: 200% 200%;
-  animation: bgFadeIn 0.4s ease forwards, gradientShift 8s ease infinite;
-  z-index: 0;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
 }
 
 .home-content {
   position: relative;
-  z-index: 1;
 }
 
 .hero-section {
@@ -68,3 +58,10 @@
 .workout-section {
   height: 42vh;
 }
+
+.weather-arrow,
+#weather-forecast {
+  color: #E6F082;
+}
+
+
