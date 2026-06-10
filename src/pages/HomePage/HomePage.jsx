@@ -5,7 +5,7 @@ import Header from "../../components/Header/Header";
 import Workout from "../../components/Workout/Workout";
 import Footer from "../../components/Footer/Footer";
 import "./HomePage.css";
-import { FaArrowDown, FaHandHolding } from "react-icons/fa";
+import { FaArrowDown } from "react-icons/fa";
 
 const weatherThemes = {
   Clear: {
@@ -70,8 +70,8 @@ export default function HomePage() {
 
   const checkCondition = () => {
     let condition = null;
-    if (weatherData && weatherData.data && weatherData.data.weather) {
-      condition = weatherData.data.weather;
+    if (weatherData && weatherData.weather) {
+      condition = weatherData.weather;
     }
     return condition;
   };
@@ -96,7 +96,6 @@ export default function HomePage() {
               <p className="text-start text-white/40 text-sm uppercase tracking-widest mb-1">
                 Your results
               </p>
-              <FaHandHolding className="text-white/40 w-20 h-5 " />
               </div>
               <div className="flex flex-row">
                 <h2 className="text-start text-4xl font-bold text-white pr-5">
@@ -109,13 +108,13 @@ export default function HomePage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
               <div className="weather-section fade-in">
                 <WeatherCard
-                  weather={weatherData.data}
-                  weatherIcon={weatherThemes[weatherData.data.weather].icon}
+                  weather={weatherData}
+                  weatherIcon={weatherThemes[weatherData.weather].icon}
                   gradient={getGradient(checkCondition())}
                 />
               </div>
               <div className="workout-section flex justify-center fade-in">
-                <Workout recommendation={weatherData.data.description} />
+                <Workout recommendation={weatherData.description} />
               </div>
             </div>
           </div>
