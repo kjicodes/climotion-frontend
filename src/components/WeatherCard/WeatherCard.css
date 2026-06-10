@@ -9,3 +9,7 @@
   background-size: 400% 400%;
   animation: gradientShift 5s linear infinite;
 }
+
+.weather-description {
+  color: #E6F082;
+}

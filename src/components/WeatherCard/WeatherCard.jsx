@@ -1,40 +1,32 @@
-
-import { useState } from 'react';
 import "./WeatherCard.css";
 
-const today = new Date().toLocaleDateString('en-US', {
+const currentDate = new Date().toLocaleDateString('en-US', {
     weekday: 'long',
     month: 'long',
     day: 'numeric',
   });
 
-export default function WeatherCard({ weather, weatherIcon, gradient }) {
-  
-
-  
+export default function WeatherCard({ weatherData, weatherIcon, weatherGradient }) {
   return (
-    <div className="weather-card-bg backdrop-blur-md border border-white/10 rounded-2xl p-6 h-full overflow-hidden" style={{ "--card-gradient": gradient }}>
-      {weather && (
+    <div className="weather-card-bg backdrop-blur-md border border-white/10 rounded-2xl p-6 h-full overflow-hidden" style={{ "--card-gradient": weatherGradient }}>
+      {weatherData && (
         <div className="text-left h-full flex flex-col justify-evenly">
           <div className="flex justify-between items-start">
             <div>
-              <h2 className="text-2xl font-semibold text-white">{weather.city}</h2>
-              <p className="text-white/50 text-sm mt-1">{today}</p>
+              <h2 className="text-2xl font-semibold text-white">{weatherData.city}</h2>
+              <p className="text-white/50 text-sm mt-1">{currentDate}</p>
             </div>
-            <p className="text-4xl"><span className="text-xl pr-3">{weather.weather}</span>{weatherIcon}</p>
+            <p className="text-4xl"><span className="text-xl pr-3">{weatherData.condition}</span>{weatherIcon}</p>
           </div>
-          <div className="flex justify-between items-end">
+          <div className="flex justify-between items-end pb-4">
             <div>
-              <p className="text-5xl font-bold text-white">{weather.temperature}°C</p>
-              <p className="text-white/50 text-sm mt-2">Feels like {weather.feels_like}°C</p>
+              <p className="text-5xl font-bold text-white">{weatherData.temperature}°C</p>
+              <p className="text-white/50 text-sm mt-2">Feels like {weatherData.feels_like}°C</p>
             </div>
-            <p className="text-white/60 text-sm">H: {weather.high}°C / L: {weather.low}°C</p>
+            <p className="text-white/60 text-sm">H: {weatherData.high}°C / L: {weatherData.low}°C</p>
           </div>
-          <div>
-            <hr className="border-white/10 mb-3" />
-            <p className="text-sm font-semibold" style={{ color: '#E6F082' }}>
-              {weather.description}
-            </p>
+          <div className="weather-description border-t pt-4 ">
+            <p>{weatherData.description}</p>
           </div>
         </div>
       )}

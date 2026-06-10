@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { BoltIcon } from "@heroicons/react/24/solid";
 import { MapPinIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
-const API_KEY = "66fde14e9066db9af613bcfab9885f1a";
+const API_URL = process.env.REACT_APP_API_URL;
 
 export default function Header({ getWeather }) {
   const [city, setCity] = useState("");
@@ -14,7 +14,7 @@ export default function Header({ getWeather }) {
   const getCitySuggestions = async () => {
     setMessage(null);
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/searched-cities", {
+      const response = await fetch(`${API_URL}/api/searched-cities`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       });
@@ -41,14 +41,14 @@ export default function Header({ getWeather }) {
   const getWeatherData = async () => {
     try {
       const response = await fetch(
-        `http://127.0.0.1:8000/api/weather/?city=${city.toLowerCase()}&appid=${API_KEY}`,
+        `${API_URL}/api/weather/?city=${city.toLowerCase()}`,
         {
           method: "GET",
           headers: { "Content-Type": "application/json" },
         }
       );
       if (!response.ok) {
-        setMessage("Please enter a valid city.");
+        setMessage("Now that isn't a real city, is it?");
         return;
       }
       const result = await response.json();
