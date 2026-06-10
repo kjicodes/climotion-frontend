@@ -1,16 +1,1 @@
-@keyframes runSlide {
-  0%, 60%, 100% { transform: translateX(0px); }
-  80%           { transform: translateX(28px); }
-}
 
-.run-alive {
-  animation: runSlide 3s ease-in-out infinite;
-}
-
-.workout-card {
-  border: 1px solid rgba(230, 240, 130, 0.4);
-  box-shadow:
-    0 0 32px rgba(230, 240, 130, 0.12),
-    0 0 8px rgba(230, 240, 130, 0.08),
-    inset 0 0 32px rgba(230, 240, 130, 0.03);
-}

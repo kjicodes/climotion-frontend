@@ -36,21 +36,16 @@ const weatherThemes = {
     gradient: "linear-gradient(135deg, #4b5563 0%, #6b7280 50%, #9ca3af 100%)",
     icon: "🌫️",
   },
-  Fog: {
-    gradient: "linear-gradient(135deg, #4b5563 0%, #6b7280 50%, #9ca3af 100%)",
-    icon: "🌫️",
-  },
-  Haze: {
-    gradient: "linear-gradient(135deg, #78716c 0%, #a8a29e 50%, #d6d3d1 100%)",
-    icon: "🌫️",
-  },
   default: {
     gradient: "linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #6b6b6b 100%)",
     icon: "🌡️",
   },
 };
 
-const getGradient = (condition) => {
+// show weather animation depending on the weather condition
+const getGradient = (weatherData) => {
+  let condition = weatherData.condition
+
   if (condition === null) {
     return weatherThemes.default.gradient;
   } else {
@@ -58,23 +53,19 @@ const getGradient = (condition) => {
   }
 };
 
+
+
 export default function HomePage() {
+
   const [weatherData, setWeatherData] = useState(null);
   const weatherSectionRef = useRef(null);
 
+  // IF weather data returned from API call (city search), scroll down to weather results section
   useEffect(() => {
-    if (weatherData && weatherSectionRef.current) {
+    if (weatherData) {
       weatherSectionRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [weatherData]);
-
-  const checkCondition = () => {
-    let condition = null;
-    if (weatherData && weatherData.weather) {
-      condition = weatherData.weather;
-    }
-    return condition;
-  };
 
   return (
     <div className="home-page">
@@ -85,36 +76,38 @@ export default function HomePage() {
             <Header getWeather={setWeatherData} />
           </div>
         </div>
+        {/* IF weather data returns from API (not null),
+        render the weather results section below */}
         {weatherData && (
           <div
             ref={weatherSectionRef}
             className="results-section px-16 md:px-32 flex flex-col items-center justify-center gap-8"
           >
             <div className="w-full fade-in mb-2">
-              <div className="flex flex-row">
-
-              <p className="text-start text-white/40 text-sm uppercase tracking-widest mb-1">
-                Your results
-              </p>
+              <div className="flex flex-row justify-center">
+                <p className="text-center text-white/40 text-sm uppercase tracking-widest mb-1">
+                  Your results
+                </p>
               </div>
-              <div className="flex flex-row">
-                <h2 className="text-start text-4xl font-bold text-white pr-5">
+              <div className="flex flex-row justify-center">
+                <h2 className="text-center text-4xl font-bold text-white pr-5">
                   Here's your <span id="weather-forecast">forecast</span>
                 </h2>
                 <FaArrowDown className="weather-arrow w-15 h-20"/>
-          
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+              {/* weather card */}
               <div className="weather-section fade-in">
                 <WeatherCard
-                  weather={weatherData}
-                  weatherIcon={weatherThemes[weatherData.weather].icon}
-                  gradient={getGradient(checkCondition())}
+                  weatherData={weatherData}
+                  weatherIcon={weatherThemes[weatherData.condition].icon}
+                  weatherGradient={getGradient(weatherData)}
                 />
               </div>
+              {/* workout card */}
               <div className="workout-section flex justify-center fade-in">
-                <Workout recommendation={weatherData.description} />
+                <Workout />
               </div>
             </div>
           </div>
