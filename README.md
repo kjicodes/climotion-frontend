@@ -4,7 +4,8 @@
 
 React frontend for Climotion. A weather-aware workout planner. Search by city to get current conditions and an indoor/outdoor workout recommendation. Currently in development.
 
-**Backend repo:** [climotion](https://github.com/kjicodes/climotion)
+**🔗 Live app:** [climotion-frontend.onrender.com](https://climotion-frontend.onrender.com)
+
 
 ---
 
@@ -17,6 +18,8 @@ React frontend for Climotion. A weather-aware workout planner. Search by city to
 ---
 
 ## Features
+
+**Backend repo:** [climotion](https://github.com/kjicodes/climotion)
 
 - City-based weather search with current conditions, temperature, and daily high/low
 - Indoor/outdoor workout recommendation based on live weather data
