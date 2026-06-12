@@ -81,7 +81,7 @@ export default function Header({ getWeather }) {
               Search your city, check the skies, and find out if today calls for
               fresh air or four walls.
             </p>
-            <div className="mt-8 flex items-center justify-start gap-x-4">
+            <div className="mt-8 flex flex-wrap items-center justify-start gap-x-4 gap-y-3">
               <label htmlFor="city" className="sr-only">
                 City Name
               </label>
@@ -98,6 +98,7 @@ export default function Header({ getWeather }) {
                   onChange={(e) => getCity(e)}
                   onFocus={() => { getCitySuggestions(); setShowDropdown(true); }}
                   onBlur={() => setShowDropdown(false)}
+                  onKeyDown={(e) => { if (e.key === 'Enter') getWeatherData(); }}
                   className={`input-field w-64 rounded-3xl bg-white/5 pl-10 pr-4 py-2.5 text-sm text-white outline-none border border-white/10 placeholder:text-gray-500 ${showDropdown && suggestions.length > 0 ? "input-field-dropdown-open" : ""}`}
                 />
                 {showDropdown && suggestions.length > 0 && (

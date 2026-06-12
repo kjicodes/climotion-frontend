@@ -81,7 +81,7 @@ export default function HomePage() {
         {weatherData && (
           <div
             ref={weatherSectionRef}
-            className="results-section px-16 md:px-32 flex flex-col items-center justify-center gap-8"
+            className="results-section px-6 md:px-16 lg:px-32 flex flex-col items-center justify-center gap-8"
           >
             <div className="w-full fade-in mb-2">
               <div className="flex flex-row justify-center">
