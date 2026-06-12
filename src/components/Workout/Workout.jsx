@@ -3,7 +3,7 @@ import "./Workout.css";
 
 export default function Workout({ recommendation }) {
   return (
-    <div className="p-10 w-full h-full text-center flex flex-col justify-evenly align-middle">
+    <div className="p-5 w-full h-full text-center flex flex-col justify-evenly align-middle">
       <h1 className="text-3xl font-semibold text-white">Ready to move?</h1>
       <div className="">
         <Link
