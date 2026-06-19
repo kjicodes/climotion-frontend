@@ -84,16 +84,14 @@ export default function HomePage() {
             className="results-section px-6 md:px-16 lg:px-32 flex flex-col items-center justify-center gap-8"
           >
             <div className="w-full fade-in mb-2">
-              <div className="flex flex-row justify-center">
-                <p className="text-center text-white/40 text-sm uppercase tracking-widest mb-1">
+              <div className="text-center">
+                <p className="text-white/40 text-sm uppercase tracking-widest mb-1">
                   Your results
                 </p>
-              </div>
-              <div className="flex flex-row justify-center">
-                <h2 className="text-center text-4xl font-bold text-white pr-5">
+                <h2 className="text-4xl font-bold text-white pr-5">
                   Here's your <span id="weather-forecast">forecast</span>
                 </h2>
-                <FaArrowDown className="weather-arrow w-15 h-20"/>
+                <FaArrowDown className="weather-arrow w-15 h-20 mx-auto"/>
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
