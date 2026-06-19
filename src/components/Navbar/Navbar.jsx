@@ -21,7 +21,7 @@ export default function Navbar() {
 
   const handleLogout = () => {
     logout();
-    navigate('/');
+    navigate('/login');
   }
 
   return (
@@ -71,7 +71,7 @@ export default function Navbar() {
         </nav>
         <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
           <div className="fixed inset-0 z-50" />
-          <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-gray-900 p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-100/10">
+          <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-100/10">
             <div className="flex items-center justify-between">
               <a href="/" className="-m-1.5 p-1.5">
                 <span className="sr-only">Climotion</span>
@@ -87,11 +87,11 @@ export default function Navbar() {
                 className="nav-items -m-2.5 rounded-md p-2.5"
               >
                 <span className="sr-only">Close menu</span>
-                <XMarkIcon aria-hidden="true" className="size-6" />
+                <XMarkIcon aria-hidden="true" className="size-6 text-black" />
               </button>
             </div>
             <div className="mt-6 flow-root">
-              <div className="-my-6 divide-y divide-white/10">
+              <div className="-my-6 divide-y divide-black/10">
                 <div className="space-y-2 py-6">
                   {navigation
                     .filter((item) => item.name !== 'Log In' && item.name !== 'Register')
@@ -99,25 +99,36 @@ export default function Navbar() {
                       <NavLink
                         key={item.name}
                         to={item.href}
-                        className="nav-links -mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5"
+                        className="nav-links-mobile -mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-black/5"
                       >
                         {item.name}
                       </NavLink>
                   ))} 
                 </div>
-                <div className="py-6">
-                  {navigation
-                    .filter((item) => item.name === 'Log In' || item.name === 'Register')
-                    .map((item) => (
-                      <NavLink
-                        key={item.name}
-                        to={item.href}
-                        className="nav-links -mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5"
-                      >
-                        {item.name}
-                      </NavLink>
-                  ))}
-                </div>
+                { user ? (
+                  <div className="py-6">
+                    <button
+                      onClick={handleLogout}
+                      className="nav-links-mobile -mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-black/5"
+                    >
+                      Log Out 
+                    </button>
+                  </div>
+                ) : (
+                  <div className="py-6">
+                    {navigation
+                      .filter((item) => !user && (item.name === 'Log In' || item.name === 'Register'))
+                      .map((item) => (
+                        <NavLink
+                          key={item.name}
+                          to={item.href}
+                          className="nav-links-mobile -mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-black/5"
+                        >
+                          {item.name}
+                        </NavLink>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           </DialogPanel>
