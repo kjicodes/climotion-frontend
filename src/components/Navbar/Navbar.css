@@ -17,8 +17,13 @@
     }
 }
 
-.nav-links {
+.nav-links,
+.nav-links-mobile {
     position: relative;
+}
+
+.nav-links-mobile {
+    color: black;
 }
 
 .nav-items,
