@@ -2,7 +2,7 @@
 
 React frontend for Climotion. A weather-aware workout planner. Search by city to get current conditions and an indoor/outdoor workout recommendation. Live and actively being developed - new features in progress.
 
-**🔗 Live app:** [climotion-frontend.onrender.com](https://climotion-frontend.onrender.com)
+**🔗 Live app:** [climotion-frontend.onrender.com](https://climotion-frontend.onrender.com) 
 **Backend repo:** [climotion](https://github.com/kjicodes/climotion)
 
 
@@ -11,6 +11,7 @@ React frontend for Climotion. A weather-aware workout planner. Search by city to
 ## Tech Stack
 
 - React
+- React Router
 - Tailwind CSS
 - Headless UI
 
@@ -25,6 +26,26 @@ React frontend for Climotion. A weather-aware workout planner. Search by city to
 - Dynamic background gradients that change per weather condition
 - Responsive layout for mobile and desktop
 
+---
+
+## Running Locally
+
+1. Clone and run the backend first, following its own README.
+
+2. Create a `.env` file in this project's root:
+
+`REACT_APP_API_URL=http://127.0.0.1:8000`
+
+pointed at wherever your local backend is actually running.
+
+3. Install dependencies and start the dev server:
+
+```bash
+npm install
+npm start
+```
+
+---
 
 ## Screenshots
 
