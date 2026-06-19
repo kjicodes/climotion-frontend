@@ -1,9 +1,10 @@
-import { NavLink } from "react-router-dom";
 import React, { useState } from 'react';
+import { NavLink, useNavigate } from "react-router-dom";
 import './Navbar.css';
 import { Dialog, DialogPanel } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { BoltIcon } from '@heroicons/react/24/solid';
+import { useAuth } from '../../context/AuthContext';
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -15,6 +16,13 @@ const navigation = [
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  }
 
   return (
     <div className="bg-gray-900">
@@ -39,7 +47,7 @@ export default function Navbar() {
           </div>
           <div className="hidden lg:flex lg:gap-x-12">
             {navigation
-              .filter((item) => item.name !== 'Register')
+              .filter((item) => item.name !== 'Register' && (!user || item.name !== 'Log In'))
               .map((item) => (
               <NavLink key={item.name} to={item.href} className="nav-links text-sm/6 font-semibold">
                 {item.name}
@@ -47,16 +55,25 @@ export default function Navbar() {
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-4">
+            {user ? (
+              <button
+                onClick={handleLogout}
+                className="nav-links-register text-xs font-semibold border rounded-full px-4 py-2 shadow-xs text-black"
+              >
+                Log Out 
+              </button>
+            ) : (
             <NavLink to="/register" className="nav-links-register text-xs font-semibold border rounded-full px-4 py-2 shadow-xs text-black">
               Register <span className="px-3" aria-hidden="true">&rarr;</span>
             </NavLink>
+            )}
           </div>
         </nav>
         <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
           <div className="fixed inset-0 z-50" />
           <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-gray-900 p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-100/10">
             <div className="flex items-center justify-between">
-              <a href="#" className="-m-1.5 p-1.5">
+              <a href="/" className="-m-1.5 p-1.5">
                 <span className="sr-only">Climotion</span>
                 <img
                   alt=""

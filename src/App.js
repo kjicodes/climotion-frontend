@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 
 import "./App.css";
 import HomePage from "./pages/HomePage/HomePage";
+import RegisterPage from "./pages/RegisterPage/RegisterPage";
+import LoginPage from "./pages/LoginPage/LoginPage";
 
 function App() {
   return (
@@ -12,6 +14,8 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/login" element={<LoginPage />} />
             {/* <Route path="/workouts" element={<WorkoutsPage />} /> */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
