@@ -42,6 +42,8 @@ React frontend for Climotion. A weather-aware workout planner. Search by city to
 
 <img src="docs/screenshots/screenshot-home.png" alt="Climotion Home Page" width="600"/>
 
+<img src="docs/screenshots/screenshot-weather-results.png" alt="Climotion Weather Results" width="600"/>
+
 <img src="docs/screenshots/screenshot-register.png" alt="Climotion Register Page" width="600"/>
 
 <img src="docs/screenshots/screenshot-login.png" alt="Climotion Log In Page" width="600"/>
