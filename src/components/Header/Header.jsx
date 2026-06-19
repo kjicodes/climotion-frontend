@@ -99,7 +99,7 @@ export default function Header({ getWeather }) {
                   onFocus={() => { getCitySuggestions(); setShowDropdown(true); }}
                   onBlur={() => setShowDropdown(false)}
                   onKeyDown={(e) => { if (e.key === 'Enter') getWeatherData(); }}
-                  className={`input-field w-64 rounded-3xl bg-white/5 pl-10 pr-4 py-2.5 text-sm text-white outline-none border border-white/10 placeholder:text-gray-500 ${showDropdown && suggestions.length > 0 ? "input-field-dropdown-open" : ""}`}
+                  className={`input-field w-64 rounded-3xl bg-white/5 pl-10 pr-4 py-2.5 text-base text-white outline-none border border-white/10 placeholder:text-gray-500 ${showDropdown && suggestions.length > 0 ? "input-field-dropdown-open" : ""}`}
                 />
                 {showDropdown && suggestions.length > 0 && (
                   <ul className="city-dropdown">
