@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import WeatherCard from "../../components/WeatherCard/WeatherCard";
 import Navbar from "../../components/Navbar/Navbar";
 import Header from "../../components/Header/Header";
-import Workout from "../../components/Workout/Workout";
+import GetWorkoutsButton from "../../components/GetWorkoutsButton/GetWorkoutsButton";
 import Footer from "../../components/Footer/Footer";
 import "./HomePage.css";
 import { FaArrowDown } from "react-icons/fa";
@@ -71,7 +71,7 @@ export default function HomePage() {
     <div className="home-page">
       <div className="home-content">
         <div className="hero-section">
-          <Navbar className="pt-5" />
+          <Navbar overlay />
           <div className="flex-1 flex items-center justify-center">
             <Header getWeather={setWeatherData} />
           </div>
@@ -107,7 +107,7 @@ export default function HomePage() {
               </div>
               {/* workout card */}
               <div className="workout-section flex justify-center fade-in">
-                <Workout />
+                <GetWorkoutsButton />
               </div>
             </div>
           </div>
