@@ -42,11 +42,14 @@ export default function SavedWorkoutsPage() {
   return (
     <div>
       <Navbar />
-      <div className="flex-col md:flex-row gap-8 max-w-6xl mx-auto px-6 py-12">
-        <div>
-          {savedWorkouts && savedWorkouts.map( savedWorkout => (
-          <SavedWorkout key={savedWorkout.id} workout={savedWorkout.workout} />
-        ))}
+      <div className="max-w-6xl mx-auto px-6 py-12">
+        <h1 className="text-3xl font-bold text-white text-left mb-8">My Workouts</h1>
+        <div className="flex-col md:flex-row gap-8">
+          <div>
+            {savedWorkouts && savedWorkouts.map( savedWorkout => (
+            <SavedWorkout key={savedWorkout.id} workout={savedWorkout.workout} />
+          ))}
+          </div>
         </div>
       </div>
       <Footer />
