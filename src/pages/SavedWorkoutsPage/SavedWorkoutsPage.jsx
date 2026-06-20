@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "../../context/AuthContext";
+import { API_BASE_URL } from "../../api/config.js";
 
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import SavedWorkout from "../../components/SavedWorkout/SavedWorkout";
 
-const API_URL = process.env.REACT_APP_API_URL;
 
 export default function SavedWorkoutsPage() {
   const { accessToken } = useAuth();
@@ -15,7 +15,7 @@ export default function SavedWorkoutsPage() {
 
   const getSavedWorkouts = async () => {
     try {
-      const response = await fetch(`${API_URL}/saved-workouts/`, {
+      const response = await fetch(`${API_BASE_URL}/saved-workouts/`, {
         method: "GET",
         headers: {
           "Authorization": `Bearer ${accessToken}`,
