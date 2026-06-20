@@ -40,7 +40,7 @@ export function AuthProvider({ children }) {
     //Register user
     const register = async ({ firstName, lastName, username, password }) => {
         try {
-            const response = await fetch(`${API_URL}/api/users/`, {
+            const response = await fetch(`${API_URL}/users/`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -68,7 +68,7 @@ export function AuthProvider({ children }) {
         try {
             //login user
             // returns user obj, access and refresh tokens
-            const response = await fetch(`${API_URL}/api/token/`, {
+            const response = await fetch(`${API_URL}/token/`, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
