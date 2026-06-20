@@ -9,12 +9,13 @@ import { useAuth } from '../../context/AuthContext';
 const navigation = [
   { name: 'Home', href: '/' },
   { name: 'Get Workouts', href: '/workouts' },
+  { name: 'Saved Workouts', href: '/saved-workouts' },
   { name: 'Log In', href: '/login'},
   { name: 'Register', href: '/register'}
 ]
 
 
-export default function Navbar() {
+export default function Navbar({ overlay = false }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const { user, logout } = useAuth();
   const navigate = useNavigate();
@@ -24,9 +25,13 @@ export default function Navbar() {
     navigate('/login');
   }
 
+  const headerClassName = overlay 
+  ? "absolute inset-x-0 top-0 z-50 pt-5 px-8 md:mx-10"
+  : "relative z-50 pt-5 px-8 md:mx-10";
+
   return (
-    <div className="bg-gray-900">
-      <header className="absolute inset-x-0 top-0 z-50 pt-5 px-8 md:mx-10">
+    <div className="bg-none">
+      <header className={headerClassName}>
         <nav aria-label="Global" className="flex items-center justify-between">
           <div className="flex lg:flex-1">
             <a href="/" className="-m-1.5 p-1.5 flex hover:opacity-75">
