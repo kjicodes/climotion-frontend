@@ -14,7 +14,7 @@ export default function Header({ getWeather }) {
   const getCitySuggestions = async () => {
     setMessage(null);
     try {
-      const response = await fetch(`${API_URL}/searched-cities`, {
+      const response = await fetch(`${API_URL}/searched-cities/`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       });
