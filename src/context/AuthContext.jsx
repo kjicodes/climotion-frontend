@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useState} from 'react';
-
-const API_URL = process.env.REACT_APP_API_URL;
+import { API_BASE_URL } from "../api/config.js";
 
 //createContext - shares a values across the component tree 
 // w/out manually passing it down as a prop through every level in between (prop drilling)
@@ -40,7 +39,7 @@ export function AuthProvider({ children }) {
     //Register user
     const register = async ({ firstName, lastName, username, password }) => {
         try {
-            const response = await fetch(`${API_URL}/users/`, {
+            const response = await fetch(`${API_BASE_URL}/users/`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -68,7 +67,7 @@ export function AuthProvider({ children }) {
         try {
             //login user
             // returns user obj, access and refresh tokens
-            const response = await fetch(`${API_URL}/token/`, {
+            const response = await fetch(`${API_BASE_URL}/token/`, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({

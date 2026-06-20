@@ -2,8 +2,7 @@ import "./Header.css";
 import React, { useState } from "react";
 import { BoltIcon } from "@heroicons/react/24/solid";
 import { MapPinIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-
-const API_URL = process.env.REACT_APP_API_URL;
+import { API_BASE_URL } from "../../api/config.js";
 
 export default function Header({ getWeather }) {
   const [city, setCity] = useState("");
@@ -14,7 +13,7 @@ export default function Header({ getWeather }) {
   const getCitySuggestions = async () => {
     setMessage(null);
     try {
-      const response = await fetch(`${API_URL}/searched-cities/`, {
+      const response = await fetch(`${API_BASE_URL}/searched-cities/`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       });
@@ -41,7 +40,7 @@ export default function Header({ getWeather }) {
   const getWeatherData = async () => {
     try {
       const response = await fetch(
-        `${API_URL}/weather/?city=${city.toLowerCase()}`,
+        `${API_BASE_URL}/weather/?city=${city.toLowerCase()}`,
         {
           method: "GET",
           headers: { "Content-Type": "application/json" },

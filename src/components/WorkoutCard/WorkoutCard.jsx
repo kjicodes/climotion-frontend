@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from 'react-router-dom';
+import { API_BASE_URL } from "../../api/config.js";
 
-const API_URL = process.env.REACT_APP_API_URL;
 
 const difficultyColors = {
   beginner: "bg-green-500/20 text-green-300 border-green-500/30",
@@ -21,7 +21,7 @@ export default function WorkoutCard({ workout }) {
 
   const saveWorkout = async () => {
     try {
-      const response = await fetch(`${API_URL}/saved-workouts/`, {
+      const response = await fetch(`${API_BASE_URL}/saved-workouts/`, {
         method: "POST",
         headers: {
           "Authorization": `Bearer ${accessToken}`,

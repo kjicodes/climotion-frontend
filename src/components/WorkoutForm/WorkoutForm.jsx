@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import "./WorkoutForm.css";
-
-const API_URL = process.env.REACT_APP_API_URL;
+import { API_BASE_URL } from "../../api/config.js";
 
 export default function WorkoutForm({ getWorkouts }) {
   const { accessToken } = useAuth();
@@ -44,7 +43,7 @@ export default function WorkoutForm({ getWorkouts }) {
     const params = new URLSearchParams(paramsObj);
 
     try {
-      const response = await fetch(`${API_URL}/workouts/?${params}`, {
+      const response = await fetch(`${API_BASE_URL}/workouts/?${params}`, {
         method: "GET",
         headers: {
           "Authorization": `Bearer ${accessToken}`,
