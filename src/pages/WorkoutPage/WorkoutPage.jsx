@@ -19,8 +19,8 @@ export default function WorkoutPage() {
         </div>
         <div className="flex-1 flex flex-col gap-4">
           {workouts && workouts.length > 0 ? (
-            workouts.map((workout, idx) => (
-              <WorkoutCard key={idx} workout={workout} />
+            workouts.map(workout => (
+              <WorkoutCard key={workout.name} workout={workout} />
             ))
           ) : (
             <p className="text-gray-400 text-center mt-12">
