@@ -2,7 +2,7 @@
 
 React frontend for Climotion. A weather-aware workout planner. Search by city to get current conditions and an indoor/outdoor workout recommendation. Live and actively being developed - new features in progress.
 
-**🔗 Live app:** [climotion-frontend.onrender.com](https://climotion-frontend.onrender.com) 
+**🔗 Live app:** [climotion-frontend.onrender.com](https://climotion-frontend.onrender.com) <br>
 **Backend repo:** [climotion](https://github.com/kjicodes/climotion)
 
 ## Tech Stack
@@ -23,7 +23,7 @@ React frontend for Climotion. A weather-aware workout planner. Search by city to
 
 ## Running Locally
 
-1. Clone and run the backend first, following its own README.
+1. Clone and run the backend first, following its own README: [climotion-backend](https://github.com/kjicodes/climotion)
 
 2. Create a `.env` file in this project's root:
 
@@ -38,6 +38,16 @@ React frontend for Climotion. A weather-aware workout planner. Search by city to
     npm start
     ```
 
+## Project Structure
+
+    src/
+    ├── api/              # Functions for calling the Django REST backend
+    ├── components/       # Reusable UI pieces, one folder per component (.jsx + .css)
+    ├── context/          # React Context providers (AuthContext for auth state)
+    ├── pages/            # Top-level route components (Home, Login, Register, Workouts, SavedWorkouts)
+    ├── App.js            # Route definitions
+    └── index.js          # App entry point
+
 ## Screenshots
 
 <img src="docs/screenshots/screenshot-home.png" alt="Climotion Home Page" width="600"/>
@@ -47,6 +57,8 @@ React frontend for Climotion. A weather-aware workout planner. Search by city to
 <img src="docs/screenshots/screenshot-workouts.png" alt="Climotion Workouts Page" width="600"/>
 
 <img src="docs/screenshots/screenshot-savedworkouts.png" alt="Climotion Saved Workouts Page" width="600"/>
+
+<img src="docs/screenshots/screenshot-savedworkouts-edit.png" alt="Climotion Edit Saved Workouts" width="600"/>
 
 <img src="docs/screenshots/screenshot-register.png" alt="Climotion Register Page" width="600"/>
 
