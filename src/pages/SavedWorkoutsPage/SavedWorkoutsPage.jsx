@@ -1,59 +1,99 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "../../context/AuthContext";
-import { API_BASE_URL } from "../../api/config.js";
+import {
+  getSavedWorkouts,
+  updateSavedWorkout,
+  deleteSavedWorkout,
+} from "../../api/savedWorkouts";
 
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
-import SavedWorkout from "../../components/SavedWorkout/SavedWorkout";
-
+import SavedWorkoutCard from "../../components/SavedWorkoutCard/SavedWorkoutCard";
 
 export default function SavedWorkoutsPage() {
   const { accessToken } = useAuth();
-
   const [savedWorkouts, setSavedWorkouts] = useState(null);
   const [message, setMessage] = useState(null);
 
-  const getSavedWorkouts = async () => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/saved-workouts/`, {
-        method: "GET",
-        headers: {
-          "Authorization": `Bearer ${accessToken}`,
-          "Content-Type": "application/json",
-        },
-      });
-      if (!response.ok) {
-        setMessage("Error saving workout. Please try again.");
+  useEffect(() => {
+    //create func upload page load
+    const fetchSavedWorkouts = async () => {
+      const result = await getSavedWorkouts(accessToken);
+
+      if (!result.success) {
+        setMessage(result.error);
         return;
       }
+      setSavedWorkouts(result.data);
+    };
+    //call func
+    fetchSavedWorkouts();
+  }, [accessToken]);
 
-      const result = await response.json();
-      console.log(result);
-      setSavedWorkouts(result);
-    } catch {
-      setMessage("Connection error.");
+  //edit saved workout - only add/update reflection notes
+  const handleUpdateWorkout = async (
+    id,
+    reflection_before,
+    reflection_after,
+  ) => {
+    console.log(reflection_before, reflection_after)
+    const updates = {
+      workout_reflection_before: reflection_before,
+      workout_reflection_after: reflection_after,
+    };
+    
+    const result = await updateSavedWorkout(id, updates, accessToken);
+
+    if (!result.success) {
+      setMessage(result.error);
+      return;
     }
+    //update state
+    setSavedWorkouts((prev) =>
+      prev.map((saved) => (saved.id === id ? result.data : saved)),
+    );
+    return;
   };
 
-  useEffect(() => {
-    getSavedWorkouts();
-  }, []);
+  //delete saved workout
+  const handleDeleteWorkout = async (id) => {
+    const result = await deleteSavedWorkout(id, accessToken);
+
+    if (!result.success) {
+      setMessage(result.error);
+      return;
+    }
+    //update state to show saved workouts list after deleting
+    setSavedWorkouts((prev) => prev.filter((saved) => saved.id !== id));
+  };
 
   return (
-    <div>
+    <div className="min-h-screen flex flex-col">
       <Navbar />
-      <div className="max-w-6xl mx-auto px-6 py-12">
-        <h1 className="text-3xl font-bold text-white text-left mb-8">My Workouts</h1>
-        <div className="flex-col md:flex-row gap-8">
+      <div className="flex-1 flex flex-col max-w-6xl mx-auto px-6 py-12">
+        <div>
+          <h1 className="text-3xl font-bold text-white text-left ">
+            My Workouts
+          </h1>
+        </div>
+        <div className="flex flex-col gap-8">
           <div>
-            {savedWorkouts && savedWorkouts.map( savedWorkout => (
-            <SavedWorkout key={savedWorkout.id} workout={savedWorkout.workout} />
-          ))}
+            {savedWorkouts &&
+              savedWorkouts.map((savedWorkout) => (
+                <SavedWorkoutCard
+                  key={savedWorkout.id}
+                  savedWorkout={savedWorkout}
+                  onUpdate={handleUpdateWorkout}
+                  onDelete={handleDeleteWorkout}
+                />
+              ))}
           </div>
         </div>
+        {message && (
+          <p className="text-red-400 text-sm text-center">{message}</p>
+        )}
       </div>
       <Footer />
-      
     </div>
   );
 }
