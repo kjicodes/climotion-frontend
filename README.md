@@ -51,13 +51,12 @@ React frontend for Climotion. A weather-aware workout planner. Search by city to
     └── index.js          # App entry point
     ```
 
-
 ## Roadmap
 
-- UI for uploading workout-goal documents and viewing the generated AI workout plan
-- "Export to Google Sheets" action on generated workout plans
-- "Sign in with Google" button and OAuth flow
-- Add Docker support for local frontend setup
+- [ ] UI for uploading workout-goal documents and viewing the generated AI workout plan
+- [ ] "Export to Google Sheets" action on generated workout plans
+- [ ] "Sign in with Google" button and OAuth flow
+- [ ] Add Docker support for local frontend setup
 
 ## Screenshots
 
