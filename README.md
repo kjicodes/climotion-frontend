@@ -41,15 +41,15 @@ React frontend for Climotion. A weather-aware workout planner. Search by city to
 
 ## Project Structure
 
-```
-src/
-├── api/              # Functions for calling the Django REST backend
-├── components/       # Reusable UI pieces, one folder per component (.jsx + .css)
-├── context/          # React Context providers (AuthContext for auth state)
-├── pages/            # Top-level route components (Home, Login, Register, Workouts, SavedWorkouts)
-├── App.js            # Route definitions
-└── index.js          # App entry point
-```
+    ```
+    src/
+    ├── api/              # Functions for calling the Django REST backend
+    ├── components/       # Reusable UI pieces, one folder per component (.jsx + .css)
+    ├── context/          # React Context providers (AuthContext for auth state)
+    ├── pages/            # Top-level route components (Home, Login, Register, Workouts, SavedWorkouts)
+    ├── App.js            # Route definitions
+    └── index.js          # App entry point
+    ```
 
 
 ## Roadmap
