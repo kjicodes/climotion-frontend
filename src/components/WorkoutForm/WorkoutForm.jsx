@@ -1,11 +1,8 @@
 import React, { useState } from "react";
-import { useAuth } from "../../context/AuthContext";
+import { apiFetch } from "../../api/apiFetch.js";
 import "./WorkoutForm.css";
-import { API_BASE_URL } from "../../api/config.js";
 
 export default function WorkoutForm({ getWorkouts }) {
-  const { accessToken } = useAuth();
-
   const [exerciseType, setExerciseType] = useState("");
   const [difficulty, setDifficulty] = useState("");
   const [muscleGroup, setMuscleGroup] = useState("");
@@ -43,20 +40,12 @@ export default function WorkoutForm({ getWorkouts }) {
     const params = new URLSearchParams(paramsObj);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/workouts/?${params}`, {
-        method: "GET",
-        headers: {
-          "Authorization": `Bearer ${accessToken}`,
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await apiFetch(`/workouts/?${params}`, { method: "GET" });
       if (!response.ok) {
         setMessage("Error getting exercises.");
         return;
       }
       const result = await response.json();
-      console.log(result);
-      console.log(accessToken)
       getWorkouts(result);
     } catch {
       setMessage("Connection error.");

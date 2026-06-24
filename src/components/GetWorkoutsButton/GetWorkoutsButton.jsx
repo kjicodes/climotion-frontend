@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
 import "./GetWorkoutsButton.css";
 
-export default function GetWorkoutsButton({ recommendation }) {
-  const { user } = useAuth();
+export default function GetWorkoutsButton() {
 
   return (
     <div className="p-5 w-full h-full text-center flex flex-col justify-evenly align-middle">

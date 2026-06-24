@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import { useAuth } from "../../context/AuthContext";
-import { useNavigate } from 'react-router-dom';
-import { API_BASE_URL } from "../../api/config.js";
-
+import { apiFetch } from "../../api/apiFetch.js";
 
 const difficultyColors = {
   beginner: "bg-green-500/20 text-green-300 border-green-500/30",
@@ -11,26 +8,15 @@ const difficultyColors = {
 };
 
 export default function WorkoutCard({ workout }) {
-  const { accessToken } = useAuth();
   const [message, setMessage] = useState(null);
   const [isSaved, setIsSaved] = useState(false);
 
-  const navigate = useNavigate();
-
-  
-
   const saveWorkout = async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/saved-workouts/`, {
-        method: "POST",
-        headers: {
-          "Authorization": `Bearer ${accessToken}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          workout: workout,
-        }),
-      });
+      const response = await apiFetch("/saved-workouts/", {
+      method: "POST",
+      body: JSON.stringify({ workout }),
+    });
       if (!response.ok) {
         setMessage("Error saving workout. Please try again.");
         return;

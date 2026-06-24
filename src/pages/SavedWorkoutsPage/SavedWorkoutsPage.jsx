@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useAuth } from "../../context/AuthContext";
 import {
   getSavedWorkouts,
   updateSavedWorkout,
@@ -11,14 +10,13 @@ import Footer from "../../components/Footer/Footer";
 import SavedWorkoutCard from "../../components/SavedWorkoutCard/SavedWorkoutCard";
 
 export default function SavedWorkoutsPage() {
-  const { accessToken } = useAuth();
   const [savedWorkouts, setSavedWorkouts] = useState(null);
   const [message, setMessage] = useState(null);
 
   useEffect(() => {
     //create func upload page load
     const fetchSavedWorkouts = async () => {
-      const result = await getSavedWorkouts(accessToken);
+      const result = await getSavedWorkouts();
 
       if (!result.success) {
         setMessage(result.error);
@@ -28,7 +26,7 @@ export default function SavedWorkoutsPage() {
     };
     //call func
     fetchSavedWorkouts();
-  }, [accessToken]);
+  }, []);
 
   //edit saved workout - only add/update reflection notes
   const handleUpdateWorkout = async (
@@ -42,7 +40,7 @@ export default function SavedWorkoutsPage() {
       workout_reflection_after: reflection_after,
     };
     
-    const result = await updateSavedWorkout(id, updates, accessToken);
+    const result = await updateSavedWorkout(id, updates);
 
     if (!result.success) {
       setMessage(result.error);
@@ -57,7 +55,7 @@ export default function SavedWorkoutsPage() {
 
   //delete saved workout
   const handleDeleteWorkout = async (id) => {
-    const result = await deleteSavedWorkout(id, accessToken);
+    const result = await deleteSavedWorkout(id);
 
     if (!result.success) {
       setMessage(result.error);
