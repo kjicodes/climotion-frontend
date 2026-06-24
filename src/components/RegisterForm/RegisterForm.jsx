@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import "./RegisterForm.css";
 
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PASSWORD_REGEX = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
 
 export default function RegisterForm() {
@@ -12,6 +13,7 @@ export default function RegisterForm() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState(null);
@@ -21,6 +23,16 @@ export default function RegisterForm() {
     setMessage(null);
 
     //client-side validation
+    if (!firstName.trim() || !lastName.trim() || !username.trim() || !email.trim() || !password.trim()) {
+      setMessage("Please fill in all required fields.");
+      return;
+    }
+
+    if (!EMAIL_REGEX.test(email)) {
+      setMessage("Please enter a valid email address.");
+      return;
+    }
+
     if (!PASSWORD_REGEX.test(password)) {
       setMessage(
         "Password must be at least 8 characters and contain an uppercase letter, lowercase letter, number, and a special character (@$!%*?&).",
@@ -33,8 +45,9 @@ export default function RegisterForm() {
       return;
     }
 
+
     //call register func from useAuth
-    const result = await register({ firstName, lastName, username, password });
+    const result = await register({ firstName, lastName, username, email, password, confirmPassword });
 
     if (result.success) {
       navigate("/");
@@ -85,6 +98,17 @@ export default function RegisterForm() {
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
+              className="w-full rounded-3xl bg-white/5 px-4 py-2.5 text-sm text-white outline-none border border-white/10 placeholder:text-gray-500"
+            />
+          </div>
+          <div>
+            <label htmlFor="email" className="block text-sm text-gray-400 mb-1">Email</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="w-full rounded-3xl bg-white/5 px-4 py-2.5 text-sm text-white outline-none border border-white/10 placeholder:text-gray-500"
             />
           </div>

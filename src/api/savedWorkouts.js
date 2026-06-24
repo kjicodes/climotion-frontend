@@ -1,14 +1,9 @@
-import { API_BASE_URL } from "./config.js";
+import { apiFetch } from "./apiFetch.js";
 
-export async function getSavedWorkouts(accessToken) {
+export async function getSavedWorkouts() {
   try {
-    const response = await fetch(`${API_BASE_URL}/saved-workouts/`, {
-      method: "GET",
-      headers: {
-        "Authorization": `Bearer ${accessToken}`,
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await apiFetch("/saved-workouts/", { method: "GET" });
+
     if (!response.ok) {
       return { "success": false, "error": "Error getting saved workouts." }
     }
@@ -19,15 +14,11 @@ export async function getSavedWorkouts(accessToken) {
   }
 };
 
-export async function createSavedWorkout(workout, accessToken) {
+export async function createSavedWorkout(workout) {
   try {
-    const response = await fetch(`${API_BASE_URL}/saved-workouts/`, {
+    const response = await apiFetch("/saved-workouts/", {
       method: "POST",
-      headers: {
-        "Authorization": `Bearer ${accessToken}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ workout: workout })
+      body: JSON.stringify({ workout }),
     });
     if (!response.ok) {
       return { "success": false, "error": "Error saving workout." }
@@ -39,14 +30,10 @@ export async function createSavedWorkout(workout, accessToken) {
   }
 };
 
-export async function updateSavedWorkout(id, updates, accessToken) {
+export async function updateSavedWorkout(id, updates) {
   try {
-    const response = await fetch(`${API_BASE_URL}/saved-workouts/${id}/`, {
+    const response = await apiFetch(`/saved-workouts/${id}/`, {
       method: "PATCH",
-      headers: {
-        "Authorization": `Bearer ${accessToken}`,
-        "Content-Type": "application/json",
-      },
       body: JSON.stringify(updates)
     });
     if (!response.ok) {
@@ -59,12 +46,10 @@ export async function updateSavedWorkout(id, updates, accessToken) {
   }
 };
 
-export async function deleteSavedWorkout(id, accessToken) {
+export async function deleteSavedWorkout(id) {
   try {
-    const response = await fetch(`${API_BASE_URL}/saved-workouts/${id}/`, {
-      method: "DELETE",
-      headers: { "Authorization": `Bearer ${accessToken}`, "Content-Type": "application/json" }
-    });
+    const response = await apiFetch(`/saved-workouts/${id}/`, { method: "DELETE" });
+    
     if (!response.ok) {
       return { "success": false, "error": "Error deleting workout." }
     }

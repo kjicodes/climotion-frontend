@@ -8,7 +8,6 @@ import WorkoutCard from "../../components/WorkoutCard/WorkoutCard";
 
 export default function WorkoutPage() {
   const [workouts, setWorkouts] = useState(null);
-  const [savedWorkout, setSavedWorkout] = useState(null);
 
   return (
     <div className="min-h-screen flex flex-col">

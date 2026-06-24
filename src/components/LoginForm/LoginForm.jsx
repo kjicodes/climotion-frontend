@@ -15,6 +15,12 @@ export default function LoginForm() {
     e.preventDefault();
     setMessage(null);
 
+    //client-side validation
+    if (!username.trim() || !password.trim()) {
+      setMessage("Please fill in all required fields.");
+      return;
+    }
+
     const result = await login({ username, password });
 
     if (result.success) {
