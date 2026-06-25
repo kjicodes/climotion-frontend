@@ -8,11 +8,7 @@ const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
-
-  // prime the CSRF cookie once on app load
-  useEffect(() => {
-    fetch(`${API_BASE_URL}/auth/csrf/`, { credentials: "include" });
-  }, []);
+  const [isLoading, setIsLoading] = useState(true);
 
   // replace localStorage with a real session check on load
   useEffect(() => {
@@ -23,6 +19,7 @@ export function AuthProvider({ children }) {
         setUser(null);
         localStorage.removeItem("user");
       }
+      setIsLoading(false)
     });
   }, []);
 
@@ -68,7 +65,7 @@ export function AuthProvider({ children }) {
 
   return (
     <AuthContext.Provider
-      value={{ user, register, login, logout }}
+      value={{ user, isLoading, register, login, logout }}
     >
       {children}
     </AuthContext.Provider>
